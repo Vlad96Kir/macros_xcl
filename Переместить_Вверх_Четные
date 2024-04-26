@@ -1,0 +1,9 @@
+Sub ПереместитьКаждуюВторуюСтроку()
+    Dim i As Integer
+    
+    ' Начинаем с последней строки и двигаемся вверх через каждую вторую строку
+    For i = Range("A" & Rows.Count).End(xlUp).Row To 2 Step -2
+        ' Вырезаем содержимое ячейки и вставляем его в соседнюю ячейку справа
+        Range("A" & i).Cut Destination:=Range("B" & (i - 1))
+    Next i
+End Sub
