@@ -1,9 +1,12 @@
-Sub ПереместитьКаждуюВторуюСтроку()
+Sub MoveValues()
     Dim i As Integer
     
-    ' Начинаем с последней строки и двигаемся вверх через каждую вторую строку
-    For i = Range("A" & Rows.Count).End(xlUp).Row To 2 Step -2
-        ' Вырезаем содержимое ячейки и вставляем его в соседнюю ячейку справа
-        Range("A" & i).Cut Destination:=Range("B" & (i - 1))
+    ' Проход по всем строкам с конца до начала с шагом 1 (чтобы не пропускать строки)
+    For i = Range("A" & Rows.Count).End(xlUp).Row To 2 Step -1
+        ' Проверяем, является ли строка четной
+        If i Mod 2 = 0 Then
+            ' Перемещаем значение из столбца A текущей строки в столбец B строки выше
+            Range("A" & i).Cut Destination:=Range("B" & (i - 1))
+        End If
     Next i
 End Sub
